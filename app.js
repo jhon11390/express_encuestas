@@ -9,4 +9,7 @@ app.get('/', (req, res) => {
   res.render('index')
 });
 
+app.get('/prueba', (req, res) => {
+  res.render('poll')
+});
 app.listen(3000, () => console.log('listeng on port 3000'));
