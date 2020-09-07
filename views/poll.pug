@@ -3,18 +3,44 @@ extends layout
 block content
   div(class="container mt-4")
     div(class="row")
+      div(class="col-auto mr-auto")
+       div(class="btn-group" role="group" arial-label="Basic-example")
+          button(type="button" class="btn btn-link")
+            <i class="fas fa-link">l</i>
+          button(type="button" class="btn btn-link") back
+
+      div(class="col-auto")
+        div(class="btn-group" role="group" arial-label="Basic-example")
+          button(type="button" class="btn btn-link")
+            <i class="fas fa-link">l</i>
+          button(type="button" class="btn btn-link")
+            <i class="fab fa-facebook-square">l</i>
+          button(type="button" class="btn btn-link")
+            <i class="fab fa-twitter">l</i>
+
+    div(class="row")
       div(class="col")
-        a(href="#")
-          <i class="fas fa-link"></i>
-          <i class="fab fa-facebook-square"></i>
-          <i class="fab fa-twitter"></i>
-        <div class="card">
-          <div class="card-header"> Quote
-          </div>
-          <div class="card-body">
-            <blockquote class="blockquote mb-0">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-              <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-            </blockquote>
-          </div>
-        </div>
+        div(class="card")
+          div(class="card-header") 
+            strong Cuantos lados tiene un triangulo?
+          div(class="card-body")
+            blockquote(class="blockquote mb-0")
+              p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+              footer(class="blockquote-footer") Encuesta hecha por 
+                cite(title="Source Title") Fernando Silva
+
+    div(class="row mt-4")
+      div(class="col")
+        div(class="card")
+          div(class="card-body")
+            h5(class="card-title") Seleccione una opcion:
+            form(action="#")
+              div(class="form-check mb-4")
+                input(class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1")
+                label(class="form-check-label" for="exampleRadios1") option 1
+              div(class="form-check mb-4")
+                input(class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2")
+                label(class="form-check-label" for="exampleRadios2") option 2
+              div(class="form-check mb-4")
+                input(class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3")
+                label(class="form-check-label" for="exampleRadios3") option 3
