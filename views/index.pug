@@ -2,12 +2,27 @@ extends layout
 
 block content
   div(class="container mt-4")
-    div(class="row")
+    div(class="row mb-4")
       div(class="col")
-        div(class="card" style="width: 18rem;")
-          div(class="card-body")
-            h5(class="card-title") Card title
-            h6(class="card-subtitle mb-2 text-muted") Card subtitle
-            p(class="card-text") Some quick example text to build on the card title and make up the bulk of   the card's content.
-            a(href="#" class="card-link") Card link
-            a(href="#" class="card-link") Another link
+        a(href="/polls/new", class="btn btn-success btn-sm") Nueva Encuesta
+    
+    div(class="row")
+      each poll in polls
+        div(class="col-4")
+          div(class="card" style="width: 18rem;")
+            div(class="card-body")
+              div(class="row justify-content-end")
+                div(class="col-4")
+                  form(action="/polls/"+poll._id+"?_method=DELETE", method="POST")
+                    input(type="submit", value="Eliminar")
+              h5(class="card-title")= poll.title
+              h6(class="card-subtitle mb-2 text-muted") Creada por jhon ortega
+              p(class="card-text")= poll.description
+              hr
+              div(class="row")
+                div(class="col text-center")
+                  a(href="#" class="card-link text-muted") 7 votos
+                div(class="col text-center")
+                  a(href="#" class="card-link") Votar
+  
+              
