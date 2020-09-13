@@ -17,6 +17,11 @@ app.get('/', async (req, res) => {
   res.render('index', {polls})
 });
 
+app.get('/polls/:id', async (req, res) => {
+  const poll = await Poll.findById(req.params.id);
+  res.render('poll', {currentPoll: poll});
+})
+
 app.get('/polls/new', (req, res) => {
   res.render('new')
 })

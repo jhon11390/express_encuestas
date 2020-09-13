@@ -14,7 +14,7 @@ block content
               div(class="row justify-content-end")
                 div(class="col-4")
                   form(action="/polls/"+poll._id+"?_method=DELETE", method="POST")
-                    input(type="submit", value="Eliminar")
+                    input(type="submit", value="Eliminar", onclick="return confirm('Are you sure?')", class="btn btn-link")
               h5(class="card-title")= poll.title
               h6(class="card-subtitle mb-2 text-muted") Creada por jhon ortega
               p(class="card-text")= poll.description
@@ -23,6 +23,6 @@ block content
                 div(class="col text-center")
                   a(href="#" class="card-link text-muted") 7 votos
                 div(class="col text-center")
-                  a(href="#" class="card-link") Votar
+                  a(href="/polls/"+poll._id, class="card-link") Votar
   
               
