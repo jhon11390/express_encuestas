@@ -25,4 +25,18 @@ schema.pre("save", function(next) {
   });
 });
 
+schema.statics.authenticate = async (email, password) => {
+	const user = await mongoose.model("User").findOne({email: email});
+	if(user){
+		return new Promise((resolve, reject) => {
+			bcrypt.compare(password, user.password, (err, result) => {
+				if(err) reject(err);
+				resolve(result === true ? user : null);
+			})
+		})
+		return user;
+	}
+	return null;
+}
+
 module.exports = mongoose.model("User", schema)
