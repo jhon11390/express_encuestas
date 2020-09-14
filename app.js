@@ -43,7 +43,8 @@ app.set('views', 'views');
 
 app.get('/', requireUser, async (req, res) => {
   const polls = await Poll.find();
-  res.render('index', {polls})
+  const user = req.session.userId
+  res.render('index', {polls, user})
 });
 
 
