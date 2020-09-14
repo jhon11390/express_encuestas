@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
+const cookieSession = require('cookie-session');
 const bcrypt = require('bcrypt');
 const Poll = require("./models/Poll");
 const app = express();
@@ -9,7 +10,11 @@ mongoose.connect("mongodb://localhost:27017/polls", {useNewUrlParser: true, useU
 
 app.use(express.urlencoded({extended: true}));
 app.use('/assets', express.static('assets'));
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
+app.use(cookieSession({
+  secret: "encuestas_2020",
+  maxAge: 24*60*60*1000
+}));
 app.set('view engine', 'pug');
 app.set('views', 'views');
 
@@ -59,5 +64,13 @@ app.delete("/polls/:id", async (req, res, next) => {
 })
 
 //Vistas para autententicacion
+
+app.get('/register', (req, res) => {
+  res.render('register')
+})
+
+app.get('/login', (req, res) => {
+  res.render('login')
+})
 
 app.listen(3000, () => console.log('listeng on port 3000'));
