@@ -6,13 +6,16 @@ block content
       div(class="col-5 card pt-2 pb-2")
         form(action="/polls", method="post")
           div(class="form-group")
-            label(for="title") Titulo
+            label(for="title")
+              strong Titulo
             input(type="text", class="form-control", id="title", name="title", placeholder="Ingrese el titulo de la encuesta")
           div(class="form-group")
-            label(for="description") Descripcion
+            label(for="description")
+              strong Descripcion
             textarea(name="description", cols="30", rows="5", id="description", class="form-control", placeholder="Ingrese una descripcion de la encuesta")
           div(class="form-group")
-            label(for="options") Opciones
+            label(for="options")
+              strong Opciones
           div(class="form-group")
             input(type="text", class="form-control", id="option1", name="option1", placeholder="Opcion 1")
           div(class="form-group")

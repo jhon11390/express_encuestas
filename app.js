@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const methodOverride = require('method-override')
-const Poll = require("./models/Poll")
+const methodOverride = require('method-override');
+const bcrypt = require('bcrypt');
+const Poll = require("./models/Poll");
 const app = express();
 
 mongoose.connect("mongodb://localhost:27017/polls", {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
@@ -11,6 +12,9 @@ app.use('/assets', express.static('assets'));
 app.use(methodOverride('_method'))
 app.set('view engine', 'pug');
 app.set('views', 'views');
+
+
+//Vistas para encuestas
 
 app.get('/', async (req, res) => {
   const polls = await Poll.find();
@@ -53,4 +57,7 @@ app.delete("/polls/:id", async (req, res, next) => {
   }
   res.redirect("/")
 })
+
+//Vistas para autententicacion
+
 app.listen(3000, () => console.log('listeng on port 3000'));
