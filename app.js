@@ -73,7 +73,8 @@ app.post('/polls', async (req, res, next) => {
     description: req.body.description,
     option1: req.body.option1,
     option2: req.body.option2,
-    option3: req.body.option3
+    option3: req.body.option3,
+    user: res.locals.user
   };
   try{
     const poll = new Poll(data);
