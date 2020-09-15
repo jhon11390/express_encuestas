@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const flash = require('connect-flash');
 const Poll = require("./models/Poll");
 const User = require('./models/User');
+const Result = require("./models/Result")
 const app = express();
 
 mongoose.connect("mongodb://localhost:27017/polls", {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
@@ -100,8 +101,16 @@ app.get('/results/:id', async (req, res) => {
   res.render('results', {currentPoll: poll});
 });
 
-app.post('/results/:id', (req, res) => {
-  console.log(req.body)
+app.post('/results/:id', async (req, res, next) => {
+  const vote = {
+    results: req.body.results
+  }
+  try{
+    const result = new Result(vote);
+    await result.save()
+  }catch(e){
+    return next(e)
+  }
   res.redirect('/results/'+req.params.id)
 });
 
