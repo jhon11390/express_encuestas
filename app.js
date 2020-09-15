@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const cookieSession = require('cookie-session');
 const bcrypt = require('bcrypt');
+const flash = require('connect-flash');
 const Poll = require("./models/Poll");
 const User = require('./models/User');
 const app = express();
@@ -33,6 +34,12 @@ app.use(async (req, res, next) => {
           delete req.session.userId;
       }
   }
+  next();
+});
+
+app.use(flash());
+app.use(function(req, res, next) {
+  res.locals.success = req.flash('success');
   next();
 })
 app.set('view engine', 'pug');
@@ -72,6 +79,7 @@ app.post('/polls', async (req, res, next) => {
   }catch(e){
     return next(e)
   }
+  req.flash('success', 'Encuesta creada con exito')
   res.redirect("/")
 });
 
@@ -81,6 +89,7 @@ app.delete("/polls/:id", requireUser, async (req, res, next) => {
   }catch(e){
     return next(e)
   }
+  req.flash('success', 'Encuesta eliminada con exito')
   res.redirect("/")
 });
 
