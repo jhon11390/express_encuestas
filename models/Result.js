@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
 const ResultSchema = mongoose.Schema({
+    pollId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Poll'
+    },
     results: String
 });
 

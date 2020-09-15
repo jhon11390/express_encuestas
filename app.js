@@ -103,6 +103,7 @@ app.get('/results/:id', async (req, res) => {
 
 app.post('/results/:id', async (req, res, next) => {
   const vote = {
+    pollId: req.params.id,
     results: req.body.results
   }
   try{
