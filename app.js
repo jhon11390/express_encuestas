@@ -84,6 +84,18 @@ app.delete("/polls/:id", requireUser, async (req, res, next) => {
   res.redirect("/")
 });
 
+//vistas results
+
+app.get('/results/:id', async (req, res) => {
+  const poll = await Poll.findById(req.params.id);
+  res.render('results', {currentPoll: poll});
+});
+
+app.post('/results/:id', (req, res) => {
+  console.log(req.body)
+  res.redirect('/results/'+req.params.id)
+});
+
 //Vistas para autententicacion
 
 app.get('/register', (req, res) => {
