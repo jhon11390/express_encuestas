@@ -50,10 +50,11 @@ app.set('views', 'views');
 
 //Vistas para encuestas
 
-app.get('/', requireUser, async (req, res) => {
+app.get('/', async (req, res) => {
   const polls = await Poll.find();
-  const user = req.session.userId
-  res.render('index', {polls, user})
+  const user = req.session.userId;
+  const users = await User.find({_id: user})
+  res.render('index', {polls, user, users})
 });
 
 

@@ -3,8 +3,9 @@ extends layout
 block content
   div(class="container mt-4")
     div(class="row mb-4")
-      div(class="col mb-4")
-        a(href="/polls/new", class="btn btn-success btn-sm") Nueva Encuesta
+      if(user)
+        div(class="col mb-4")
+          a(href="/polls/new", class="btn btn-success btn-sm") Nueva Encuesta
       if(success && success.length > 0)
         div(class="col-12 col-lg-4")
           div(class="alert alert-success alert-dismissible fade show", role="alert")= success
@@ -16,10 +17,11 @@ block content
         div(class="col-12 col-sm-6 col-lg-4 mb-4")
           div(class="card")
             div(class="card-body")
-              div(class="row justify-content-end")
-                div(class="col-4")
-                  form(action="/polls/"+poll._id+"?_method=DELETE", method="POST")
-                    input(type="submit", value="Eliminar", onclick="return confirm('Esta seguro de eliminar esta encuesta?')", class="btn btn-link")
+              if(user == poll.user)
+                div(class="row justify-content-end")
+                  div(class="col-4")
+                    form(action="/polls/"+poll._id+"?_method=DELETE", method="POST")
+                      input(type="submit", value="Eliminar", onclick="return confirm('Esta seguro de  eliminar esta encuesta?')", class="btn btn-link")
               h3(class="card-title")
                 strong= poll.title
               h6(class="card-subtitle mb-2 text-muted") Creada por jhon ortega
