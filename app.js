@@ -6,7 +6,8 @@ const bcrypt = require('bcrypt');
 const flash = require('connect-flash');
 const Poll = require("./models/Poll");
 const User = require('./models/User');
-const Result = require("./models/Result")
+const Result = require("./models/Result");
+const { ObjectId } = require('mongoose');
 const app = express();
 
 mongoose.connect("mongodb://localhost:27017/polls", {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
@@ -98,7 +99,14 @@ app.delete("/polls/:id", requireUser, async (req, res, next) => {
 
 app.get('/results/:id', async (req, res) => {
   const poll = await Poll.findById(req.params.id);
-  res.render('results', {currentPoll: poll});
+  const allresults = await Result.count({pollId: req.params.id});
+  const alloption1 = await Result.count({$and: [{pollId: req.params.id}, {results: poll.option1}]});
+  const alloption1porcentage= await (alloption1/allresults*100).toFixed(1)
+  const alloption2 = await Result.count({$and: [{pollId: req.params.id}, {results: poll.option2}]});
+  const alloption2porcentage= await (alloption2/allresults*100).toFixed(1);
+  const alloption3 = await Result.count({$and: [{pollId: req.params.id}, {results: poll.option3}]});
+  const alloption3porcentage= await (alloption3/allresults*100).toFixed(1);
+  res.render('results', {currentPoll: poll, allresults, alloption1, alloption2, alloption3, alloption1porcentage, alloption2porcentage, alloption3porcentage});
 });
 
 app.post('/results/:id', async (req, res, next) => {
