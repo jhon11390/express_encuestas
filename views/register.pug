@@ -1,6 +1,7 @@
 extends layout
 
 block content
+  include mixins
   div(class="container mt-4")
     div(class="row justify-content-center")
       div(class="col-10 col-md-6 col-lg-5 card pt-2 pb-2")
@@ -10,11 +11,13 @@ block content
           div(class="form-group")
             label(for="email")
               strong Email
-            input(type="email", class="form-control", id="email", name="email", placeholder="Ingrese su email")
+            input(type="email", class= errors && errors.email ? "form-control is-invalid" : "form-control", id="email", name="email", placeholder="Ingrese su email")
+            +error(errors, "email")
           div(class="form-group mb-4")
             label(for="password")
               strong Password
-            input(type="password", class="form-control", id="password", name="password", placeholder="Ingrese su email")
+            input(type="password", class=errors && errors.password ? "form-control is-invalid" : "form-control", id="password", name="password", placeholder="Ingrese su email")
+            +error(errors, "password")
           hr
           div(class="row mt-4")
             div(class="col-auto mr-auto")

@@ -24,7 +24,10 @@ block content
                       input(type="submit", value="Eliminar", onclick="return confirm('Esta seguro de  eliminar esta encuesta?')", class="btn btn-link")
               h3(class="card-title")
                 strong= poll.title
-              h6(class="card-subtitle mb-2 text-muted") Creada por jhon ortega
+              each usuario in users
+                if(usuario._id.toString() == poll.user.toString())
+                  h6(class="card-subtitle mb-2 text-muted") 
+                    small Encuesta creada por #{usuario.email}
               br
               p(class="card-text")= poll.description
               hr
@@ -33,5 +36,3 @@ block content
                   a(href="#" class="card-link text-muted") 7 votos
                 div(class="col text-center")
                   a(href="/polls/"+poll._id, class="card-link") Votar
-  
-              

@@ -53,7 +53,7 @@ app.set('views', 'views');
 app.get('/', async (req, res) => {
   const polls = await Poll.find();
   const user = req.session.userId;
-  const users = await User.find({_id: user})
+  const users = await User.find()
   res.render('index', {polls, user, users})
 });
 
@@ -150,7 +150,11 @@ app.post('/register', async (req, res, next) => {
     })
     res.redirect('/login')
   }catch(err){
-    return next(err)
+    if(err.name === "ValidationError"){
+      res.render('register', {errors: err.errors});
+    }else{
+      return next(err)
+    }
   }
 });
 
@@ -161,7 +165,7 @@ app.post('/login', async(req, res, next) => {
       req.session.userId = user._id;
       return res.redirect("/")
     }else{
-      res.render("/login", {error: "La contraseña es incorrecta"});
+      res.render("login", {error: "Has introducido un email o un password incorrecto."});
     }
   }catch(err){
     return next(err)

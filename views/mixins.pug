@@ -1,0 +1,4 @@
+mixin error(errors, field)
+  if errors && errors[field]
+    p(class="text-danger")
+      small= errors[field].message

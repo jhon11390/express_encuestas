@@ -7,7 +7,14 @@ const schema = new mongoose.Schema({
     unique: true,
     lowercase: true,
     trim: true,
-    required: [true, "is required"]
+    required: [true, "is required"],
+    match: [/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/, "Email invalid"],
+    validate: {
+      validator(v) {
+        return mongoose.model('User').findOne({ email: v}).then(u => !u)
+      },
+      message: "Este email ya existe intente  con otro"
+    }
   },
   password: {
     type: String,
