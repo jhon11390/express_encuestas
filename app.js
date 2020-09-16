@@ -53,8 +53,9 @@ app.set('views', 'views');
 app.get('/', async (req, res) => {
   const polls = await Poll.find();
   const user = req.session.userId;
-  const users = await User.find()
-  res.render('index', {polls, user, users})
+  const users = await User.find();
+  const results = await Result.find();
+  res.render('index', {polls, user, users, results})
 });
 
 
@@ -68,7 +69,7 @@ app.get('/polls/:id', async (req, res) => {
 });
 
 
-app.post('/polls', async (req, res, next) => {
+app.post('/polls', requireUser, async (req, res, next) => {
   const data = {
     title: req.body.title,
     description: req.body.description,
