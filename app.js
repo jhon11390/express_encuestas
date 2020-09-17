@@ -65,7 +65,8 @@ app.get('/polls/new', requireUser, (req, res) => {
 
 app.get('/polls/:id', async (req, res) => {
   const poll = await Poll.findById(req.params.id);
-  res.render('poll', {currentPoll: poll});
+  const users = await User.find()
+  res.render('poll', {currentPoll: poll, users});
 });
 
 
@@ -109,7 +110,8 @@ app.get('/results/:id', async (req, res) => {
   const alloption2porcentage= await (alloption2/allresults*100).toFixed(1);
   const alloption3 = await Result.count({$and: [{pollId: req.params.id}, {results: poll.option3}]});
   const alloption3porcentage= await (alloption3/allresults*100).toFixed(1);
-  res.render('results', {currentPoll: poll, allresults, alloption1, alloption2, alloption3, alloption1porcentage, alloption2porcentage, alloption3porcentage});
+  const users = await User.find();
+  res.render('results', {currentPoll: poll, allresults, alloption1, alloption2, alloption3, alloption1porcentage, alloption2porcentage, alloption3porcentage, users});
 });
 
 app.post('/results/:id', async (req, res, next) => {

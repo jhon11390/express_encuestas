@@ -29,8 +29,11 @@ block content
           div(class="card-body")
             blockquote(class="blockquote mb-0")
               p= currentPoll.description
-              footer(class="blockquote-footer") Encuesta hecha por 
-                cite(title="Source Title") Fernando Silva
+              each user in users
+                if(user._id.toString() == currentPoll.user)
+                  footer(class="blockquote-footer") Encuesta por 
+                    cite(title="Source Title")
+                      small= user.email
     
     form(action="/results/"+currentPoll._id, method="post")
       div(class="row mt-4 justify-content-center")
