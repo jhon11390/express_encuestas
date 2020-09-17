@@ -21,7 +21,7 @@ block content
               if(user == poll.user)
                 div(class="row justify-content-end")
                   div(class="col-4")
-                    form(action="/polls/"+poll._id+"?_method=DELETE", method="POST")
+                    form(action="/polls/"+poll._id+"?_method=DELETE", method="POST", name="eliminar")
                       input(type="submit", value="Eliminar", onclick="return confirm('Esta seguro de  eliminar esta encuesta?')", class="btn btn-link")
               else
                 div(class="row justify-content-end")
@@ -31,7 +31,7 @@ block content
                 strong= poll.title
               each usuario in users
                 if(usuario._id.toString() == poll.user)
-                  h6(class="card-subtitle mb-2 text-muted") Encuesta creada por 
+                  h6(class="card-subtitle mb-2 text-muted") Encuesta por 
                     small= usuario.email
               br
               p(class="card-text")= poll.description
@@ -44,4 +44,3 @@ block content
                   a(href="#" class="card-link text-muted") #{allvotes.length} votos
                 div(class="col text-center")
                   a(href="/polls/"+poll._id, class="card-link") Votar
-              
