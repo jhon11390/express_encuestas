@@ -1,6 +1,7 @@
 extends layout
 
 block content
+  include mixins
   div(class="container mt-4")
     div(class="row justify-content-center")
       div(class="col-10 col-md-6 col-lg-5 card pt-2 pb-2")
@@ -8,18 +9,22 @@ block content
           div(class="form-group")
             label(for="title")
               strong Titulo
-            input(type="text", class="form-control", id="title", name="title", placeholder="Ingrese el titulo de la encuesta")
+            input(type="text", class=errors && errors.title ? "form-control is-invalid" : "form-control", id="title", name="title", placeholder="Ingrese el titulo de la encuesta")
+            +error(errors, "title")
           div(class="form-group")
             label(for="description")
               strong Descripcion
-            textarea(name="description", cols="30", rows="5", id="description", class="form-control", placeholder="Ingrese una descripcion de la encuesta")
+            textarea(name="description", cols="30", rows="5", id="description", class=errors && errors.description ? "form-control is-invalid" : "form-control", placeholder="Ingrese una descripcion de la encuesta")
+            +error(errors, "description")
           div(class="form-group")
             label(for="options")
               strong Opciones
           div(class="form-group")
-            input(type="text", class="form-control", id="option1", name="option1", placeholder="Opcion 1")
+            input(type="text", class=errors && errors.option1 ? "form-control is-invalid" : "form-control", id="option1", name="option1", placeholder="Opcion 1")
+            +error(errors, "option1")
           div(class="form-group")
-            input(type="text", class="form-control", id="option2", name="option2", placeholder="Opcion 2")
+            input(type="text", class=errors && errors.option2 ? "form-control is-invalid" : "form-control", id="option2", name="option2", placeholder="Opcion 2")
+            +error(errors, "option2")
           div(class="form-group")
             input(type="text", class="form-control", id="option3", name="option3", placeholder="Opcion 3")
           div(class="row")

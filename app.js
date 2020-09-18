@@ -83,7 +83,11 @@ app.post('/polls', requireUser, async (req, res, next) => {
     const poll = new Poll(data);
     await poll.save()
   }catch(e){
-    return next(e)
+    if(e.name === "ValidationError"){
+      res.render('new', {errors: e.errors});
+    }else{
+      return next(e)
+    }
   }
   req.flash('success', 'Encuesta creada con exito')
   res.redirect("/")

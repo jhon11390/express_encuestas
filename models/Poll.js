@@ -5,10 +5,22 @@ const PollSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    title: String,
-    description: String,
-    option1: String,
-    option2: String,
+    title: {
+        type: String,
+        required: [true, "is required"]
+    },
+    description: {
+        type: String,
+        required: [true, "is required"]
+    },
+    option1: {
+        type: String,
+        required: [true, "is required"]
+    },
+    option2: {
+        type: String,
+        required: [true, "is required"]
+    },
     option3: String
 });
 
