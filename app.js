@@ -127,7 +127,13 @@ app.post('/results/:id', async (req, res, next) => {
     const result = new Result(vote);
     await result.save()
   }catch(e){
-    return next(e)
+    if(e.name === "ValidationError"){
+      const poll = await Poll.findById(req.params.id);
+      const users = await User.find()
+      res.render('poll', {errors: e.errors, currentPoll: poll, users});
+    }else{
+      return next(e)
+    }
   }
   res.redirect('/results/'+req.params.id)
 });

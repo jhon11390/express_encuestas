@@ -5,7 +5,10 @@ const ResultSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Poll'
     },
-    results: String
+    results: {
+        type: String,
+        required: [true, "Please select an option"]
+    }
 });
 
 const Result = mongoose.model("Result", ResultSchema);
