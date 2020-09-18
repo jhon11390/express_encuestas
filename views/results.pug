@@ -53,10 +53,11 @@ block content
                   small(class="text-muted")= alloption2 + " votos"
                 div(class="progress")
                   div(class="progress-bar bg-success", role="progressbar", style=`width: ${alloption2porcentage}%;`, aria-valuenow=alloption2porcentage, aria-valuemin="0", aria-valuemax="100")= alloption2porcentage
-            div(class="row mb-4")
-              div(class="col")  
-                h5 #{currentPoll.option3} 
-                  small(class="text-muted")= alloption3 + " votos"
-                div(class="progress")
-                  div(class="progress-bar bg-success", role="progressbar", style=`width: ${alloption3porcentage}%;`, aria-valuenow=alloption3porcentage, aria-valuemin="0", aria-valuemax="100")= alloption3porcentage
+            if(currentPoll.option3.length > 0)
+              div(class="row mb-4")
+                div(class="col")  
+                  h5 #{currentPoll.option3} 
+                    small(class="text-muted")= alloption3 + " votos"
+                  div(class="progress")
+                    div(class="progress-bar bg-success", role="progressbar", style=`width: $  {alloption3porcentage}%;`, aria-valuenow=alloption3porcentage, aria-valuemin="0",   aria-valuemax="100")= alloption3porcentage
     
