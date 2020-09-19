@@ -107,12 +107,12 @@ app.delete("/polls/:id", requireUser, async (req, res, next) => {
 
 app.get('/results/:id', async (req, res) => {
   const poll = await Poll.findById(req.params.id);
-  const allresults = await Result.count({pollId: req.params.id});
-  const alloption1 = await Result.count({$and: [{pollId: req.params.id}, {results: poll.option1}]});
+  const allresults = await Result.countDocuments({pollId: req.params.id});
+  const alloption1 = await Result.countDocuments({$and: [{pollId: req.params.id}, {results: poll.option1}]});
   const alloption1porcentage= await (alloption1/allresults*100).toFixed(1)
-  const alloption2 = await Result.count({$and: [{pollId: req.params.id}, {results: poll.option2}]});
+  const alloption2 = await Result.countDocuments({$and: [{pollId: req.params.id}, {results: poll.option2}]});
   const alloption2porcentage= await (alloption2/allresults*100).toFixed(1);
-  const alloption3 = await Result.count({$and: [{pollId: req.params.id}, {results: poll.option3}]});
+  const alloption3 = await Result.countDocuments({$and: [{pollId: req.params.id}, {results: poll.option3}]});
   const alloption3porcentage= await (alloption3/allresults*100).toFixed(1);
   const users = await User.find();
   res.render('results', {currentPoll: poll, allresults, alloption1, alloption2, alloption3, alloption1porcentage, alloption2porcentage, alloption3porcentage, users});

@@ -23,7 +23,12 @@ const PollSchema = mongoose.Schema({
     },
     option3: String
 });
-
+PollSchema.methods.truncateBody = function() {
+    if(this.description && this.description.length > 75){
+        return this.description.substring(0, 30) + "...";
+    }
+    return this.description
+}
 const Poll = mongoose.model("Poll", PollSchema);
 
 module.exports = Poll
