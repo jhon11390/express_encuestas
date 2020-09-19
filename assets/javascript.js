@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
 	$('#add_field').click (function(e) {
 		e.preventDefault();     //prevenir novos clicks
@@ -13,4 +14,5 @@ $(document).ready(function(){
 		$(this).parent('div').parent('div').remove();
 		$("#add_field").show();
 	});
+
 })

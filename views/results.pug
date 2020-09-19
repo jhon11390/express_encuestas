@@ -8,17 +8,16 @@ block content
           div(class="col-auto mr-auto")
            div(class="btn-group" role="group" arial-label="Basic-example")
               a(class="btn btn-link", href="/")
-                <i class="fas fa-link">l</i>
-              a(class="btn btn-link", href="/") back
+                <i class="fas fa-arrow-left">back</i>
 
           div(class="col-auto")
             div(class="btn-group" role="group" arial-label="Basic-example")
-              button(type="button" class="btn btn-link")
-                <i class="fas fa-link">l</i>
-              button(type="button" class="btn btn-link")
-                <i class="fab fa-facebook-square">l</i>
-              button(type="button" class="btn btn-link")
-                <i class="fab fa-twitter">l</i>
+              a(href='#', id="share-link", class="ml-4")
+                <i class="fas fa-link"></i>
+              a(href='#', id='share-facebook', data-link= path, class="ml-2")
+                <i class="fab fa-facebook-square"></i>
+              a(href='https://twitter.com/intent/tweet?url=' + path,  data-link= path, class="ml-2")
+                <i class="fab fa-twitter"></i>
 
     div(class="row justify-content-center")
       div(class="col-10 col-md-6 col-lg-5")
@@ -60,4 +59,3 @@ block content
                     small(class="text-muted")= alloption3 + " votos"
                   div(class="progress")
                     div(class="progress-bar bg-success", role="progressbar", style=`width: $  {alloption3porcentage}%;`, aria-valuenow=alloption3porcentage, aria-valuemin="0",   aria-valuemax="100")= alloption3porcentage
-    
