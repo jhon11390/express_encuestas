@@ -25,7 +25,11 @@ block content
           div(class="form-group")
             input(type="text", class=errors && errors.option2 ? "form-control is-invalid" : "form-control", id="option2", name="option2", placeholder="Opcion 2")
             +error(errors, "option2")
-          div(class="form-group", id="addoption3")
+          div(class="input-group", id="addoption3")
+            input(type="text", class="form-control", id="option3", name="option3", placeholder="Opcion 3")
+            div(class="input-group-append")
+              button(class="btn btn-primary", type="button", id="button-addon2")
+                <i class="fas fa-trash-alt"></i>
           div(class="form-group text-center")
             input(type="button", value="Agregar opcion", class="btn btn-primary", id="add_field")
           div(class="row")
