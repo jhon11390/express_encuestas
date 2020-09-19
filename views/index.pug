@@ -28,7 +28,7 @@ block content
                   div(class="col-4")
                     p &nbsp;
               h3(class="card-title")
-                strong= poll.title
+                strong= poll.letter()
               each usuario in users
                 if(usuario._id.toString() == poll.user)
                   h6(class="card-subtitle mb-2 text-muted") Encuesta por 
