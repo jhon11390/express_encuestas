@@ -22,7 +22,7 @@ block content
                 div(class="row justify-content-end")
                   div(class="col-4")
                     form(action="/polls/"+poll._id+"?_method=DELETE", method="POST", name="eliminar")
-                       input(type="submit", value="Eliminar", onclick="return confirm('Esta seguro de  eliminar esta encuesta?')", class="btn btn-link")
+                       input(type="submit", value="Eliminar", onclick="return confirm('Esta seguro de  eliminar esta encuesta?')", class="btn btn-danger")
               else
                 div(class="row justify-content-end")
                   div(class="col-4")

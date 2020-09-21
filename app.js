@@ -115,7 +115,8 @@ app.get('/results/:id', async (req, res) => {
   const alloption3 = await Result.countDocuments({$and: [{pollId: req.params.id}, {results: poll.option3}]});
   const alloption3porcentage= await (alloption3/allresults*100).toFixed(1);
   const users = await User.find();
-  res.render('results', {currentPoll: poll, allresults, alloption1, alloption2, alloption3, alloption1porcentage, alloption2porcentage, alloption3porcentage, users});
+  const path = ( req.protocol + '://' + req.get( 'host' ) + '/polls/' + poll._id );
+  res.render('results', {currentPoll: poll, allresults, alloption1, alloption2, alloption3, alloption1porcentage, alloption2porcentage, alloption3porcentage, users, currentPath: path});
 });
 
 app.post('/results/:id', async (req, res, next) => {
