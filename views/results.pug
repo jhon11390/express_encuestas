@@ -1,10 +1,6 @@
 extends layout
 
 block content
-  #fb-root
-  script
-    include ../assets/facebook.js
-    include ../assets/twitter.js
   div(class="container mt-4")
     div(class="row justify-content-center")
       div(class="col-10 col-md-6 col-lg-5")
@@ -12,12 +8,12 @@ block content
           div(class="col-auto mr-auto")
            div(class="btn-group" role="group" arial-label="Basic-example")
               a(class="btn btn-link", href="/")
-                <i class="fas fa-arrow-left">back</i>
+                i(class="fas fa-arrow-left") back
 
           div(class="col-auto")
             div(class="btn-group" role="group" arial-label="Basic-example")
               a(href='#', id="share-link", class="ml-4")
-                <i class="fas fa-link"></i>
+                i(class="fas fa-share-alt-square")
               <!-- Modal -->
               div(class="modal fade" id="myModal" role="dialog")
                 div(class="modal-dialog")
@@ -35,9 +31,10 @@ block content
                     div(class="modal-footer")
                       button(type="button" class="btn btn-default" data-dismiss="modal") Close
 
-              a(href='#' id='share-facebook' data-link= currentPath)
-                <i class="fab fa-facebook-square"></i>
-              a(class="twitter-share-button", href="https://twitter.com/intent/tweet?=url" + currentPath, data-size="small", data-text="Mira esta encuesta: ")
+              a(href="https://www.facebook.com/sharer/sharer.php?u="+currentPath, class="ml-2" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=250,top=120,left=100,toolbar=no,location=no,status=no,menubar=no');return false;")
+                i(class="fab fa-facebook-square")
+              a(href="https://twitter.com/intent/tweet?text= mira%20esta%20encuesta&url="+currentPath, class= "ml-2" target="_blank" onclick="window.open(this.href,this.target,'width=500,height=250,top=120,left=100,toolbar=no,location=no,status=no,menubar=no');return false;")
+                i(class="fab fa-twitter-square")
 
     div(class="row justify-content-center")
       div(class="col-10 col-md-6 col-lg-5")
@@ -79,4 +76,6 @@ block content
                     small(class="text-muted")= alloption3 + " votos"
                   div(class="progress")
                     div(class="progress-bar bg-success", role="progressbar", style=`width: $  {alloption3porcentage}%;`, aria-valuenow=alloption3porcentage, aria-valuemin="0",   aria-valuemax="100")= alloption3porcentage
+  a(href="https://google.com" target="_blank" onclick="window.open(this.href,this.target,'width=400,height=250,top=120,left=100,toolbar=no,location=no,status=no,menubar=no');return false;") Mi popup mal hecho
+
   
