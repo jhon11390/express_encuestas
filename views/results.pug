@@ -18,6 +18,23 @@ block content
             div(class="btn-group" role="group" arial-label="Basic-example")
               a(href='#', id="share-link", class="ml-4")
                 <i class="fas fa-link"></i>
+              <!-- Modal -->
+              div(class="modal fade" id="myModal" role="dialog")
+                div(class="modal-dialog")
+
+                  <!-- Modal content-->
+                  div(class="modal-content")
+                    div(class="modal-header")
+                      h6(class="modal-title") Copy URL
+                      button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                        span(aria-hidden="true") &times;
+
+                    div(class="modal-body")
+                      p= currentPath
+
+                    div(class="modal-footer")
+                      button(type="button" class="btn btn-default" data-dismiss="modal") Close
+
               a(href='#' id='share-facebook' data-link= currentPath)
                 <i class="fab fa-facebook-square"></i>
               a(class="twitter-share-button", href="https://twitter.com/intent/tweet?=url" + currentPath, data-size="small", data-text="Mira esta encuesta: ")
