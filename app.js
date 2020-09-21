@@ -9,8 +9,9 @@ const User = require('./models/User');
 const Result = require("./models/Result");
 const { ObjectId } = require('mongoose');
 const app = express();
+const PORT = process.env.PORT || 3000
 
-mongoose.connect("mongodb://localhost:27017/polls", {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
+mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:27017/polls", {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
 
 app.use(express.urlencoded({extended: true}));
 app.use('/assets', express.static('assets'));
@@ -186,4 +187,4 @@ app.post('/login', async(req, res, next) => {
   }
 });
 
-app.listen(3000, () => console.log('listeng on port 3000'));
+app.listen(PORT, () => console.log(`Listening on port ${ PORT }!`));
