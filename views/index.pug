@@ -41,6 +41,6 @@ block content
                   -allvotes.push(result.results)
               div(class="row")
                 div(class="col text-center")
-                  p(class="card-link text-muted") #{allvotes.length} votos
+                  a(href="/results/"+poll._id, class="card-link text-muted") #{allvotes.length} votos
                 div(class="col text-center")
                   a(href="/polls/"+poll._id, class="card-link") Votar
