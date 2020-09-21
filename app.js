@@ -11,7 +11,7 @@ const { ObjectId } = require('mongoose');
 const app = express();
 const PORT = process.env.PORT || 3000
 
-mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:27017/polls", {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/polls", {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
 
 app.use(express.urlencoded({extended: true}));
 app.use('/assets', express.static('assets'));
